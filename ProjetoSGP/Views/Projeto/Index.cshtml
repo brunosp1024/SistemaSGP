@@ -4,48 +4,109 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2 class="titulo-lista">Lista dos Projetos</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(" ", "Create", new { }, new { @class = "btn btn-success glyphicon glyphicon-plus add" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ValorContrato)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ValorContrato)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdProjeto }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdProjeto }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdProjeto })
-        </td>
-    </tr>
-}
+<div class="tabela">
+    <table class="table table-condensed table-hover">
+        <tr class="cor-titulo">
+            <th>
+                @Html.DisplayNameFor(model => model.IdProjeto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorContrato)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdProjeto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorContrato)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.IdProjeto }, new { @class = "btn btn-primary glyphicon glyphicon-edit edit" })
+                    @Html.ActionLink(" ", "Details", new { id = item.IdProjeto }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.IdProjeto }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                    @Html.ActionLink(" ", "Create", "Atividade", new { id = item.IdProjeto }, new { @class = "btn btn-success glyphicon glyphicon-plus" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+<hr />
+
+<div style="margin-left: 550px">
+    <button class="btn btn-default">@Html.ActionLink("Voltar", "Index", "Home")</button>
+</div>
+
+<style>
+
+    .add {
+        margin-bottom: 5px;
+    }
+
+    .tabela {
+        width: 100%;
+        height: 380px;
+        overflow: hidden;
+        overflow-y: scroll;
+        margin: 40px auto -5px auto;
+    }
+
+    tr th, tr td {
+        color: black;
+        text-align: left;
+    }
+
+
+    .flutuar {
+        float: left;
+        margin-bottom: 5px;
+        position: relative;
+        top: 50px;
+    }
+
+    .titulo-lista {
+        position: relative;
+        margin-right: 60px;
+        color: black;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .cor-titulo {
+        background: #808080;
+        pointer-events: none;
+    }
+</style>

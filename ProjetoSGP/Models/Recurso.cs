@@ -15,7 +15,6 @@ namespace ProjetoSGP.Models
         [DisplayName("Id")]
         public int IdRecurso { get; set; }
 
-        [Index("Recurso_Nome_Index", IsUnique = true)]
         public string Nome { get; set; }
 
         [DisplayName("E-Mail")]

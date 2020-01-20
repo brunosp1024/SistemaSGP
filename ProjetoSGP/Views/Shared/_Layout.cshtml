@@ -6,32 +6,46 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/messages_pt_BR.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/estilo.css">
+
 </head>
-<body>
+<body style="background: #F2F2F2">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <h2>Projeto SGP</h2>
+        </div>
+    </div>
+
+    <div id="barra-lateral">
+        <!--Itens de menu-->
+        <div class="menu-item">
+            <div class="item">
+                <img src="~/Content/imagens/home.png" />
+                @Html.ActionLink("Início", "Index", "Home")
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div class="item">
+                <img src="~/Content/imagens/Recurso.png" />
+                @Html.ActionLink("Recursos", "Index", "Recurso")
+            </div>
+            <div class="item">
+                <img src="~/Content/imagens/projeto.png" />
+                @Html.ActionLink("Projetos", "Index", "Projeto")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+
+    <div class="container body-content margem-titulo">
+
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+ 
+        <footer id="rodape">
+            <p>&copy; @DateTime.Now.Year - Bruno Salvador Pereira</p>
         </footer>
     </div>
 

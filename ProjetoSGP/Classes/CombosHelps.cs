@@ -18,8 +18,15 @@ namespace ProjetoSGP.Classes
             rec.Add(new Recurso
             {
                 IdRecurso = 0,
-                Nome = "[--Selecione um Recurso--]"
             });
+
+            return rec = rec.OrderBy(r => r.Nome).ToList();
+        }
+
+        public static List<Atividade> GetAtividades()
+        {
+
+            var rec = db.Atividades.ToList();
 
             return rec = rec.OrderBy(r => r.Nome).ToList();
         }

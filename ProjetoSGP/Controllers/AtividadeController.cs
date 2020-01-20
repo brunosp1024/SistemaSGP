@@ -55,10 +55,16 @@ namespace ProjetoSGP.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var date = Convert.ToDateTime(atividade.DataTermino) - Convert.ToDateTime(atividade.DataInicio); //date recebe a doferenca das datas definidas no formulário
+
+                atividade.Duracao = date.Days;
+
                 db.Atividades.Add(atividade);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
 
             ViewBag.IdRecurso = new SelectList(CombosHelps.GetRecursos(), "IdRecurso", "Nome");
             return View();
@@ -89,6 +95,11 @@ namespace ProjetoSGP.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var date = Convert.ToDateTime(atividade.DataTermino) - Convert.ToDateTime(atividade.DataInicio);
+
+                atividade.Duracao = date.Days;
+
                 db.Entry(atividade).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

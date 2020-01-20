@@ -39,6 +39,17 @@ namespace ProjetoSGP.Controllers
         // GET: Projeto/Create
         public ActionResult Create()
         {
+
+            ViewBag.Status = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Selecione", Value="", Selected = true},
+            new SelectListItem { Text = "A iniciar", Value="A iniciar"},
+            new SelectListItem { Text = "Em andamento", Value="Em andamento"},
+            new SelectListItem { Text = "Concluído", Value="Concluido"},
+            new SelectListItem { Text = "Cancelado", Value="Cancelado"},
+
+        };
+
             return View();
         }
 
@@ -55,6 +66,16 @@ namespace ProjetoSGP.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Status = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Selecione", Value="", Selected = true},
+            new SelectListItem { Text = "A iniciar", Value="A iniciar"},
+            new SelectListItem { Text = "Em andamento", Value="Em andamento"},
+            new SelectListItem { Text = "Concluído", Value="Concluido"},
+            new SelectListItem { Text = "Cancelado", Value="Cancelado"},
+
+        };
 
             return View(projeto);
         }

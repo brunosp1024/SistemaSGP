@@ -1,0 +1,78 @@
+﻿
+* {
+    font-family: verdana;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+#rodape {
+    position: relative;
+    text-align: center;
+    margin-top: 150px;
+    border-top: 1px dotted #222;
+    color: #222;
+    padding: 15px;
+}
+
+.menu-item img {
+    width: 30px;
+    margin-right: 20px;
+    padding-top: 8px;
+}
+
+/*menu lateral*/
+
+div#barra-lateral {
+    position: fixed;
+    z-index: 10;
+    width: 65px;
+    height: 100%;
+    background-color: #222;
+    overflow: hidden;
+    -webkit-transition: width 0.5s cubic-bezier(.61,.01,.37,1);
+}
+
+    div#barra-lateral:hover {
+        width: 230px;
+    }
+
+.item:hover {
+    background: #979797;
+}
+
+.margem-titulo {
+    margin: 30px auto;
+    background: white;
+}
+
+#barra-lateral a:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: #0026ff;
+}
+
+#logo-menu {
+    margin: 10px;
+    float: left;
+}
+
+.menu-item {
+    margin-top: 20px;
+    margin-left: 0;
+    float: left;
+}
+
+div.item {
+    margin-bottom: 40px;
+    padding: 5px 0 16px 15px;
+    width: 240px;
+    height: 60px;
+    float: left;
+}

@@ -4,69 +4,88 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
-{
+<form class="form-horizontal" id="formCadastroRecurso" name="formCadastroRecurso" method="post">
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Atividade</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <h2 style="color: black">Cadastrar Atividade</h2>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataInicio, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <hr />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataTermino, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataTermino, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataTermino, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Duracao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Duracao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Duracao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdRecurso, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdRecurso", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdRecurso, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="nome" class="nome form-control" />
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="dataInicio" class="data form-control" placeholder="dd/MM/AAAA" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataTermino, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="dataTermino" class="data form-control" placeholder="dd/MM/AAAA" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdRecurso, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdRecurso", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdRecurso, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="margin-left: 500px">
+            <input type="submit" value="Cadastrar" class="btn btn-default" /> |
+            <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
+        </div>
+    </div>
+</form>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+
+    $('.data').mask('00/00/0000');
+
+     $("#formCadastroRecurso").validate({
+
+        rules: {
+
+            nome: {
+
+                required: true,
+                maxlength: 100,
+                minlength: 10,
+
+            },
+
+            data: {
+
+                required: true,
+                date: true
+
+            },
+
+            telefone: {
+
+                required: true
+
+            }
+
+        }
+
+    })
+    
+</script>
