@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ProjetoSGP.Classes;
 using ProjetoSGP.Context;
 using ProjetoSGP.Models;
 
@@ -19,7 +18,7 @@ namespace ProjetoSGP.Controllers
         // GET: Atividade
         public ActionResult Index()
         {
-            var atividades = db.Atividades.Include(a => a.Recurso);
+            var atividades = db.Atividades.Include(a => a.Projeto).Include(a => a.Recurso);
             return View(atividades.ToList());
         }
 
@@ -41,9 +40,9 @@ namespace ProjetoSGP.Controllers
         // GET: Atividade/Create
         public ActionResult Create()
         {
-
-            ViewBag.IdRecurso = new SelectList(CombosHelps.GetRecursos(), "IdRecurso", "Nome");
-            return View();
+            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome");
+            ViewBag.IdRecurso = new SelectList(db.Recursoes, "IdRecurso", "Nome");
+            return PartialView();
         }
 
         // POST: Atividade/Create
@@ -51,23 +50,18 @@ namespace ProjetoSGP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdAtividade,Nome,DataInicio,DataTermino,Duracao,IdRecurso")] Atividade atividade)
+        public ActionResult Create([Bind(Include = "IdAtividade,Nome,DataInicio,DataTermino,Duracao,IdRecurso,IdProjeto")] Atividade atividade)
         {
             if (ModelState.IsValid)
             {
-
-                var date = Convert.ToDateTime(atividade.DataTermino) - Convert.ToDateTime(atividade.DataInicio); //date recebe a doferenca das datas definidas no formulário
-
-                atividade.Duracao = date.Days;
-
                 db.Atividades.Add(atividade);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-
-            ViewBag.IdRecurso = new SelectList(CombosHelps.GetRecursos(), "IdRecurso", "Nome");
-            return View();
+            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome", atividade.IdProjeto);
+            ViewBag.IdRecurso = new SelectList(db.Recursoes, "IdRecurso", "Nome", atividade.IdRecurso);
+            return PartialView(atividade);
         }
 
         // GET: Atividade/Edit/5
@@ -82,7 +76,8 @@ namespace ProjetoSGP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdRecurso = new SelectList(CombosHelps.GetRecursos(), "IdRecurso", "Nome", atividade.IdRecurso);
+            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome", atividade.IdProjeto);
+            ViewBag.IdRecurso = new SelectList(db.Recursoes, "IdRecurso", "Nome", atividade.IdRecurso);
             return View(atividade);
         }
 
@@ -91,20 +86,16 @@ namespace ProjetoSGP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAtividade,Nome,DataInicio,DataTermino,Duracao,IdRecurso")] Atividade atividade)
+        public ActionResult Edit([Bind(Include = "IdAtividade,Nome,DataInicio,DataTermino,Duracao,IdRecurso,IdProjeto")] Atividade atividade)
         {
             if (ModelState.IsValid)
             {
-
-                var date = Convert.ToDateTime(atividade.DataTermino) - Convert.ToDateTime(atividade.DataInicio);
-
-                atividade.Duracao = date.Days;
-
                 db.Entry(atividade).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdRecurso = new SelectList(CombosHelps.GetRecursos(), "IdRecurso", "Nome", atividade.IdRecurso);
+            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome", atividade.IdProjeto);
+            ViewBag.IdRecurso = new SelectList(db.Recursoes, "IdRecurso", "Nome", atividade.IdRecurso);
             return View(atividade);
         }
 

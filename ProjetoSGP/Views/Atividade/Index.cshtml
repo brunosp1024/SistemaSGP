@@ -4,120 +4,60 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="titulo-lista">Lista de Atividades</h2>
+<h2>Index</h2>
+
 <p>
-    @Html.ActionLink(" ", "Create", new { }, new { @class = "btn btn-success glyphicon glyphicon-plus add" })
+    @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Projeto.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recurso.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataTermino)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duracao)
+        </th>
+        <th></th>
+    </tr>
 
-<div class="tabela">
-    <table class="table table-condensed table-hover">
-        <tr class="cor-titulo">
-            <th>
-                @Html.DisplayNameFor(model => model.IdAtividade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recurso.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataTermino)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Duracao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Projeto.IdProjeto)
-            </th>
-            <th></th>
-        </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Projeto.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recurso.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataTermino)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duracao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdAtividade }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdAtividade }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdAtividade })
+        </td>
+    </tr>
+}
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdAtividade)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Recurso.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataInicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataTermino)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Duracao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Projeto.IdProjeto)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdAtividade }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.IdAtividade }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.IdAtividade }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
-                </td>
-            </tr>
-        }
-
-    </table>
-</div>
-
-<hr />
-
-<div style="text-align:center">
-    <button class="btn btn-default">@Html.ActionLink("Voltar", "Index", "Home")</button>
-</div>
-
-<style>
-
-    .add {
-        margin-bottom: -50px;
-    }
-
-    .tabela {
-        width: 100%;
-        height: 380px;
-        overflow: hidden;
-        overflow-y: scroll;
-        margin: 40px auto -5px auto;
-    }
-
-    tr th, tr td {
-        color: black;
-        text-align: left;
-    }
-
-
-    .flutuar {
-        float: left;
-        margin-bottom: 5px;
-        position: relative;
-        top: 50px;
-    }
-
-    .titulo-lista {
-        position: relative;
-        margin-right: 60px;
-        color: black;
-        text-align: center;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .cor-titulo {
-        background: #F2F2F2;
-        pointer-events: none;
-    }
-</style>
-
+</table>

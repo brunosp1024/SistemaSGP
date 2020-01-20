@@ -25,9 +25,12 @@ namespace ProjetoSGP.Models
         [DisplayName("Recurso")]
         public int IdRecurso { get; set; }
 
+        [DisplayName("Projeto")]
+        public int IdProjeto { get; set; }
+
         public virtual Recurso Recurso { get; set; }
 
-        public Projeto Projeto { get; set; }
+        public virtual Projeto Projeto { get; set; }
 
     }
 }

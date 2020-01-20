@@ -4,109 +4,95 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="titulo-lista">Lista dos Projetos</h2>
+<h2>Index</h2>
+
 <p>
-    @Html.ActionLink(" ", "Create", new { }, new { @class = "btn btn-success glyphicon glyphicon-plus add" })
+    @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProjeto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorContrato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
 
-<div class="tabela">
-    <table class="table table-condensed table-hover">
-        <tr class="cor-titulo">
-            <th>
-                @Html.DisplayNameFor(model => model.IdProjeto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ValorContrato)
-            </th>
-            <th></th>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProjeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.IdProjeto }, new { @class = "btn btn-primary glyphicon glyphicon-edit edit" })
+                @Html.ActionLink(" ", "Details", new { id = item.IdProjeto }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
+                @Html.ActionLink(" ", "Delete", new { id = item.IdProjeto }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                @Html.ActionLink(" ", "Create", "Atividade", new { id = item.IdProjeto }, new { @class = "btn btn-success glyphicon glyphicon-plus" })
+                <a href="#" class="btn btn-success glyphicon glyphicon-plus create" data-value="@item.IdProjeto"> </a>
+            </td>
         </tr>
+    }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdProjeto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataInicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ValorContrato)
-                </td>
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.IdProjeto }, new { @class = "btn btn-primary glyphicon glyphicon-edit edit" })
-                    @Html.ActionLink(" ", "Details", new { id = item.IdProjeto }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
-                    @Html.ActionLink(" ", "Delete", new { id = item.IdProjeto }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
-                    @Html.ActionLink(" ", "Create", "Atividade", new { id = item.IdProjeto }, new { @class = "btn btn-success glyphicon glyphicon-plus" })
-                </td>
-            </tr>
-        }
+</table>
 
-    </table>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="conteudo-modal"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<hr />
 
-<div style="margin-left: 550px">
-    <button class="btn btn-default">@Html.ActionLink("Voltar", "Index", "Home")</button>
-</div>
+<script type="text/javascript">
 
-<style>
+    $(document).ready(function () {
 
-    .add {
-        margin-bottom: 5px;
-    }
+        $(".create").click(function () {
+            var id = $(this).data("value");
 
-    .tabela {
-        width: 100%;
-        height: 380px;
-        overflow: hidden;
-        overflow-y: scroll;
-        margin: 40px auto -5px auto;
-    }
+            $("#conteudo-modal").load("/Atividade/Create/" + id, function () {
 
-    tr th, tr td {
-        color: black;
-        text-align: left;
-    }
+                $('#myModal').modal("show");
+
+            });
+
+        });
+
+    });
 
 
-    .flutuar {
-        float: left;
-        margin-bottom: 5px;
-        position: relative;
-        top: 50px;
-    }
 
-    .titulo-lista {
-        position: relative;
-        margin-right: 60px;
-        color: black;
-        text-align: center;
-    }
+</script>
 
-    a {
-        text-decoration: none;
-    }
 
-    .cor-titulo {
-        background: #808080;
-        pointer-events: none;
-    }
-</style>
+
+

@@ -19,10 +19,12 @@ namespace ProjetoSGP.Models
         [DisplayName("Data de Início")]
         public DateTime DataInicio { get; set; }
 
-        public string Status { get; set; }
+        public ICollection<string> Status { get; set; }
 
         [DisplayName("Valor do Contrato")]
         public double ValorContrato { get; set; }
+
+        public virtual ICollection<Atividade> Atividades { get; set; }
 
     }
 }
