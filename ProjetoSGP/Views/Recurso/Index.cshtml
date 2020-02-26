@@ -11,7 +11,7 @@
 
 <div class="tabela">
     <table class="table table-condensed table-hover">
-        <tr class="cor-titulo">
+        <tr class="cor-titulo" style="position: static">
             <th>
                 @Html.DisplayNameFor(model => model.IdRecurso)
             </th>
@@ -43,9 +43,9 @@
                     @Html.DisplayFor(modelItem => item.Telefone)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdRecurso }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.IdRecurso }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.IdRecurso }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                    @Html.ActionLink(" ", "Edit", new { id = item.IdRecurso }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
+                    @Html.ActionLink(" ", "Details", new { id = item.IdRecurso }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.IdRecurso }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
                 </td>
             </tr>
         }
@@ -69,7 +69,7 @@
         width: 100%;
         height: 380px;
         overflow: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
         margin: 40px auto -5px auto;
     }
 

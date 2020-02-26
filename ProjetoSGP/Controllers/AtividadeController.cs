@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ProjetoSGP.Context;
+using ProjetoSGP.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ProjetoSGP.Context;
-using ProjetoSGP.Models;
 
 namespace ProjetoSGP.Controllers
 {
@@ -38,11 +35,13 @@ namespace ProjetoSGP.Controllers
         }
 
         // GET: Atividade/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome");
+            Projeto projeto = db.Projetoes.Find(id);
+            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome", projeto.IdProjeto);
             ViewBag.IdRecurso = new SelectList(db.Recursoes, "IdRecurso", "Nome");
-            return PartialView();
+            
+            return View();
         }
 
         // POST: Atividade/Create
@@ -54,14 +53,17 @@ namespace ProjetoSGP.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                atividade.Duracao = (Convert.ToDateTime(atividade.DataTermino) - Convert.ToDateTime(atividade.DataInicio)).Days;
+
                 db.Atividades.Add(atividade);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Projeto");
             }
 
             ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome", atividade.IdProjeto);
             ViewBag.IdRecurso = new SelectList(db.Recursoes, "IdRecurso", "Nome", atividade.IdRecurso);
-            return PartialView(atividade);
+            return View(atividade);
         }
 
         // GET: Atividade/Edit/5

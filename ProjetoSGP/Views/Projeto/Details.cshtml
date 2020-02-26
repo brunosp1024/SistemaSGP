@@ -4,94 +4,135 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="titulo-lista">Detalhes do Projeto</h2>
 
-<>
-<h4>Projeto</h4>
-<hr />
-<dl class="dl-horizontal">
-    <dt>
-        @Html.DisplayNameFor(model => model.Nome)
-    </dt>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.Nome)
-    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.DataInicio)
-    </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.DataInicio)
-    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.ValorContrato)
-    </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorContrato)
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.ValorContrato)
-    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.ValorContrato)
+        </dd>
 
-</dl>
+    </dl>
+    <hr />
 
-<h3>Atividades Relacionadas</h3>
-<table class="table">
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Recurso
-        </th>
-        <th>
-            Atividade
-        </th>
-        <th>
-            Data de Início
-        </th>
-        <th>
-            Data de Término
-        </th>
-        <th>
-            Duração
-        </th>
-        <th></th>
-    </tr>
+    <h3>Atividades Relacionadas</h3>
+    <div class="tabela">
+        <table class="table">
+            <tr class="cor-titulo">
+                <th>
+                    Id
+                </th>
+                <th>
+                    Recurso
+                </th>
+                <th>
+                    Atividade
+                </th>
+                <th>
+                    Data de Início
+                </th>
+                <th>
+                    Data de Término
+                </th>
+                <th>
+                    Duração
+                </th>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model.Atividades)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Projeto.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Recurso.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataTermino)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duracao)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdAtividade }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdAtividade }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdAtividade })
-            </td>
-        </tr>
-    }
+            @foreach (var item in Model.Atividades)
+            {
 
-</table>
+
+                string txt = "";
+                string texto = "";
+                if (item.DataInicio > DateTime.Now && item.DataTermino > DateTime.Now)
+                {
+                    txt = "background: yellow";
+                }
+                else if (item.DataInicio < DateTime.Now && item.DataTermino > DateTime.Now)
+                {
+                    txt = "background: green";
+                }
+                else if (item.DataTermino < DateTime.Now)
+                {
+                    txt = "background: red";
+                    texto = "color: white";
+                }
+
+
+                <tr style="@txt; @texto">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Projeto.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Recurso.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataTermino)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duracao)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.IdAtividade }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.IdAtividade }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IdAtividade })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.IdProjeto }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<style>
+
+    .titulo-lista {
+        color: black;
+        text-align: center
+    }
+
+    .tabela {
+        width: 100%;
+
+        overflow-y: auto;
+    }
+
+    .cor-titulo {
+        background: #F2F2F2;
+        pointer-events: none;
+    }
+</style>

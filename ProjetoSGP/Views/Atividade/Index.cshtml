@@ -32,32 +32,53 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Projeto.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Recurso.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataTermino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duracao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdAtividade }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdAtividade }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdAtividade })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+
+
+        string txt = "";
+        if (item.DataInicio > DateTime.Now && item.DataTermino > DateTime.Now)
+        {
+            txt = "background: yellow";
+        }
+        else if (item.DataInicio < DateTime.Now && item.DataTermino > DateTime.Now)
+        {
+            txt = "background: green";
+        }
+        else if (item.DataTermino < DateTime.Now)
+        {
+            txt = "background: red";
+        }
+
+
+        <tr style="@txt">
+            <td>
+                @Html.DisplayFor(modelItem => item.Projeto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recurso.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataTermino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duracao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdAtividade }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdAtividade }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdAtividade })
+            </td>
+        </tr>
+
+    }
 
 </table>
+
+

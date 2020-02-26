@@ -11,6 +11,7 @@ namespace ProjetoSGP.Models
         [DisplayName("Id")] //Exibe o nome Id ao invés de IdAtividade
         public int IdAtividade { get; set; }
 
+        [DisplayName("Atividade")]
         public string Nome { get; set; }
 
         [DisplayName("Data de Início")]

@@ -15,6 +15,7 @@ namespace ProjetoSGP.Models
         [DisplayName("Id")]
         public int IdRecurso { get; set; }
 
+        [DisplayName("Recurso")]
         public string Nome { get; set; }
 
         [DisplayName("E-Mail")]

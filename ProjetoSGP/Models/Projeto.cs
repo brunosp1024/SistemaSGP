@@ -14,6 +14,7 @@ namespace ProjetoSGP.Models
         [DisplayName("Id")]
         public int IdProjeto { get; set; }
 
+        [DisplayName("Projeto")]
         public string Nome { get; set; }
 
         [DisplayName("Data de Início")]
