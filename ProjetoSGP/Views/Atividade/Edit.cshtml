@@ -4,16 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    <h2 style="color: black">Editar Atividade</h2>
     <div class="form-horizontal">
-        <h4>Atividade</h4>
+
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdAtividade)
 
@@ -50,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdRecurso, "IdRecurso", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IdRecurso, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("IdRecurso", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdRecurso, "", new { @class = "text-danger" })
@@ -58,24 +56,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdProjeto, "IdProjeto", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IdProjeto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("IdProjeto", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdProjeto, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <hr />
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-10" style="margin-left: 475px">
+                <input type="submit" value="Salvar" class="btn btn-default" /> |
+                <button class="btn btn-default">@Html.ActionLink("Cancelar", "Index", "Projeto")</button>
             </div>
         </div>
+
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

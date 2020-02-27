@@ -18,10 +18,12 @@ namespace ProjetoSGP.Models
         public string Nome { get; set; }
 
         [DisplayName("Data de Início")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInicio { get; set; }
 
-        public ICollection<string> Status { get; set; }
+        public string Status { get; set; }
 
+        [DataType(DataType.Currency)]
         [DisplayName("Valor do Contrato")]
         public double ValorContrato { get; set; }
 

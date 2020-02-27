@@ -40,7 +40,7 @@ namespace ProjetoSGP.Controllers
         public ActionResult Create()
         {
 
-            var lista = new []
+            var lista = new[]
                     {
                         new SelectListItem { Value="1", Text = "Selecione", Selected = true},
                         new SelectListItem { Value="2", Text = "A iniciar"},
@@ -49,7 +49,7 @@ namespace ProjetoSGP.Controllers
                         new SelectListItem { Value="5", Text = "Cancelado"},
                     };
 
-            ViewBag.Status = new SelectList(lista, "Value", "Text" );
+            ViewBag.Status = new SelectList(lista, "Text", "Text");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace ProjetoSGP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProjeto,Nome,DataInicio,ValorContrato")] Projeto projeto)
+        public ActionResult Create([Bind(Include = "IdProjeto,Nome,DataInicio,ValorContrato, Status")] Projeto projeto)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace ProjetoSGP.Controllers
                         new SelectListItem { Value="5", Text = "Cancelado"},
                     };
 
-            ViewBag.Status = new SelectList(lista, "Value", "Text", projeto.Status);
+            ViewBag.Status = new SelectList(lista, "Text", "Text", projeto.Status);
             return View(projeto);
         }
 
@@ -92,6 +92,18 @@ namespace ProjetoSGP.Controllers
             {
                 return HttpNotFound();
             }
+
+            var lista = new[]
+                    {
+                        new SelectListItem { Value="1", Text = "Selecione", Selected = true},
+                        new SelectListItem { Value="2", Text = "A iniciar"},
+                        new SelectListItem { Value="3", Text = "Em andamento"},
+                        new SelectListItem { Value="4", Text = "Concluído"},
+                        new SelectListItem { Value="5", Text = "Cancelado"},
+                    };
+
+            ViewBag.Status = new SelectList(lista, "Text", "Text", projeto.Status);
+
             return View(projeto);
         }
 
@@ -100,10 +112,22 @@ namespace ProjetoSGP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProjeto,Nome,DataInicio,ValorContrato")] Projeto projeto)
+        public ActionResult Edit([Bind(Include = "IdProjeto,Nome,DataInicio,ValorContrato,Status")] Projeto projeto)
         {
             if (ModelState.IsValid)
             {
+
+                var lista = new[]
+                    {
+                        new SelectListItem { Value="1", Text = "Selecione", Selected = true},
+                        new SelectListItem { Value="2", Text = "A iniciar"},
+                        new SelectListItem { Value="3", Text = "Em andamento"},
+                        new SelectListItem { Value="4", Text = "Concluído"},
+                        new SelectListItem { Value="5", Text = "Cancelado"},
+                    };
+
+                ViewBag.Status = new SelectList(lista, "Text", "Text", projeto.Status);
+
                 db.Entry(projeto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

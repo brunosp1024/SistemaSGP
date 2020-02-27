@@ -4,16 +4,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-
-@using (Html.BeginForm())
-{
+<form class="form-horizontal" id="formCadastroRecurso" name="formCadastroRecurso" method="post">
     @Html.AntiForgeryToken()
-
+    <h2 style="color: black">Nova Atividade</h2>
     <div class="form-horizontal">
-        <h4>Atividade</h4>
+
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,22 +48,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdProjeto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdProjeto", null, htmlAttributes: new { @class = "form-control", @readonly = "true"})
+                @Html.DropDownList("IdProjeto", null, htmlAttributes: new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.IdProjeto, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="margin-left: 475px">
+            <input type="submit" value="Cadastrar" class="btn btn-default" />
+            <button class="btn btn-default">@Html.ActionLink("Voltar", "Index", "Projeto")</button>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</form>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

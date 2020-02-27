@@ -5,6 +5,8 @@
 }
 
 <h2 class="titulo-lista">Lista dos Projetos</h2>
+
+<hr style="margin: 0"/>
 <p>
     @Html.ActionLink(" ", "Create", new { }, new { @class = "btn btn-success glyphicon glyphicon-plus add" })
 </p>
@@ -52,7 +54,7 @@
                     @Html.ActionLink(" ", "Edit", new { id = item.IdProjeto }, new { @class = "btn btn-primary glyphicon glyphicon-edit edit" })
                     @Html.ActionLink(" ", "Details", new { id = item.IdProjeto }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
                     @Html.ActionLink(" ", "Delete", new { id = item.IdProjeto }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
-                    @Html.ActionLink(" ", "Create", "Atividade", new { id = item.IdProjeto }, new { @class = "btn btn-success glyphicon glyphicon-plus" })
+                    @Html.ActionLink("Atividade", "Create", "Atividade", new { id = item.IdProjeto }, new { @class = "btn btn-success glyphicon glyphicon-plus" })
                 </td>
             </tr>
         }
@@ -60,6 +62,8 @@
     </table>
 
 </div>
+
+<hr />
 
 <div style="text-align:center">
     <button class="btn btn-default">@Html.ActionLink("Voltar", "Index", "Home")</button>

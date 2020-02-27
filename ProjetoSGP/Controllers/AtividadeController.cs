@@ -94,7 +94,7 @@ namespace ProjetoSGP.Controllers
             {
                 db.Entry(atividade).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Projeto");
             }
             ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "Nome", atividade.IdProjeto);
             ViewBag.IdRecurso = new SelectList(db.Recursoes, "IdRecurso", "Nome", atividade.IdRecurso);
@@ -124,7 +124,7 @@ namespace ProjetoSGP.Controllers
             Atividade atividade = db.Atividades.Find(id);
             db.Atividades.Remove(atividade);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Projeto");
         }
 
         protected override void Dispose(bool disposing)

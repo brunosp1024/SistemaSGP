@@ -102,9 +102,9 @@
                         @Html.DisplayFor(modelItem => item.Duracao)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.IdAtividade }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.IdAtividade }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.IdAtividade })
+                        @Html.ActionLink(" ", "Edit", "Atividade", new { id = item.IdAtividade }, new { @class = "btn btn-primary glyphicon glyphicon-edit edit" })
+                        @Html.ActionLink(" ", "Details", "Atividade", new { id = item.IdAtividade }, new { @class = "btn btn-warning glyphicon glyphicon-file" })
+                        @Html.ActionLink(" ", "Delete", "Atividade", new { id = item.IdAtividade }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
                     </td>
                 </tr>
             }
@@ -113,9 +113,11 @@
     </div>
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProjeto }) |
-    @Html.ActionLink("Back to List", "Index")
+<hr />
+
+<p style=" margin-left: 500px">
+    <button class="btn btn-default">@Html.ActionLink("Editar", "Edit", new { id = Model.IdProjeto })</button> |
+    <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
 </p>
 
 <style>
@@ -127,12 +129,16 @@
 
     .tabela {
         width: 100%;
-
         overflow-y: auto;
+        height: 186px;
     }
 
     .cor-titulo {
         background: #F2F2F2;
         pointer-events: none;
+    }
+
+    h3 {
+        text-align: center;
     }
 </style>
